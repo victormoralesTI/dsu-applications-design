@@ -2,13 +2,13 @@ import { createClient } from 'contentful'
 import { AvocadoList } from '../components/Avocados/AvocadoList'
 import { Layout } from '../components/Layout/Layout'
 
-export async function getStaticProps() {
+export async function getStaticProps({ locale }) {
   const client = createClient({
     space: process.env.CONTENTFUL_SPACE_ID,
     accessToken: process.env.CONTENTFUL_ACCESS_KEY,
   })
 
-  const res = await client.getEntries({ content_type: 'avocadoItem' })
+  const res = await client.getEntries({ content_type: 'avocadoItem', locale })
 
   return {
     props: {
