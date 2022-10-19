@@ -17,7 +17,7 @@ export default function Footer() {
       setFooter(res.items[0].fields)
     }
     getFooter()
-  }, [client])
+  }, [])
 
   return (
     <Segment
