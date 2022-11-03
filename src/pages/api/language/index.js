@@ -11,7 +11,7 @@ export default function handler(req, res) {
     case 'POST':
       return postLanguage(req, res)
     default:
-      return res.status(405).end()
+      return res.status(405).json({ message: 'Method not allowed.' })
   }
 }
 
@@ -27,11 +27,7 @@ const postLanguage = (req, res) => {
   return res.end()
 }
 
-const setCookie = (res, name, value, options = {}) => {
-  const stringValue = typeof value === 'object' ? 'j:' + JSON.stringify(value) : String(value)
-  if ('maxAge' in options) {
-    options.expires = new Date(Date.now() + options.maxAge)
-    options.maxAge /= 1000
-  }
+export const setCookie = (res, name, value, options = {}) => {
+  const stringValue = typeof value === 'object' ? String(Object.values(value)[0]) : String(value)
   res.setHeader('Set-Cookie', serialize(name, String(stringValue), options))
 }
