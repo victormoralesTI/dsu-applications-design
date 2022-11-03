@@ -2,7 +2,7 @@ import React from 'react'
 
 export const Skeleton = () => {
   return (
-    <div className="skeleton">
+    <div className="skeleton" data-testid="skeleton-test">
       <div className="s-banner"></div>
       <div className="s-header"></div>
       <div className="s-content"></div>

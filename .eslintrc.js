@@ -20,4 +20,15 @@ module.exports = {
       "aspects": ["invalidHref", "preferButton"]
     }]
   },
+  "overrides": [
+    {
+      "files": [
+        "**/*.spec.js",
+        "**/*.spec.jsx"
+      ],
+      "env": {
+        "jest": true
+      }
+    }
+  ]
 };
