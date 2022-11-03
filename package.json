@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "test": "jest --watch",
-    "test:precommit": "jest --watchAll=false",
+    "test:precommit": "jest --coverage --watchAll=false",
     "test-coverage": "yarn test --coverage --watchAll",
     "build": "next build",
     "start": "next start",
