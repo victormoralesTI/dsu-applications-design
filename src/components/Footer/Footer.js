@@ -1,23 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Link from 'next/link'
-import { createClient } from 'contentful'
 import { Segment, Container, Grid, List, Header } from 'semantic-ui-react'
+import { useAppSelector } from '../../store/hooks'
 
 export default function Footer() {
-  const [footer, setFooter] = useState({})
-
-  const client = createClient({
-    space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
-    accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_KEY,
-  })
-
-  useEffect(() => {
-    const getFooter = async () => {
-      const res = await client.getEntries({ content_type: 'footer' })
-      setFooter(res.items[0].fields)
-    }
-    getFooter()
-  }, [])
+  const footer = useAppSelector((state) => state.content.footer)
 
   return (
     <Segment
@@ -30,7 +17,7 @@ export default function Footer() {
       }}
     >
       <Container text>
-        <Grid stackable>
+        <Grid stackable data-testid="footer">
           <Grid.Row>
             <Grid.Column width={9}>
               <Header as="h4" content={footer.servicesTitle} />

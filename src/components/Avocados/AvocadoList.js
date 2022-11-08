@@ -7,6 +7,7 @@ const mapProductsToCards = (avocados) =>
   avocados.map(({ fields }) => (
     <Link key={fields.slug} href={`/avocado/${fields.slug}`} passHref>
       <Card
+        data-testid="avocado-list"
         as="a"
         header={fields.title}
         image={{ children: <Image src={'https:' + fields.featuredImage.fields.file.url} width={333} height={333} alt="avocado-image" /> }}
