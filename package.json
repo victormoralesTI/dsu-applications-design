@@ -6,7 +6,7 @@
     "dev": "next dev",
     "test": "jest --watch",
     "test:precommit": "jest --coverage --watchAll=false",
-    "test-coverage": "yarn test --coverage --watchAll",
+    "test:coverage": "yarn test --coverage --watchAll",
     "build": "next build",
     "start": "next start",
     "lint": "eslint 'src/**/*.js'",
@@ -16,11 +16,13 @@
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^15.12.1",
+    "@reduxjs/toolkit": "^1.9.0",
     "contentful": "^9.2.5",
     "cookie": "^0.5.0",
     "next": "12.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-redux": "^8.0.5",
     "semantic-ui-css": "^2.5.0",
     "semantic-ui-react": "^2.1.3"
   },

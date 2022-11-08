@@ -1,19 +1,29 @@
+import { useEffect } from 'react'
 import { AvocadoList } from '../components/Avocados/AvocadoList'
 import { Layout } from '../components/Layout/Layout'
-import { clientContentful } from '../utils/client'
+import { getContentThunk, selectAvocados, selectFetchedContent, selectLocale, setSelectedAvocado } from '../store/content'
+import { useAppDispatch, useAppSelector } from '../store/hooks'
 
-export async function getStaticProps({ locale }) {
-  const res = await clientContentful.getEntries({ content_type: 'avocadoItem', locale })
+export default function Home() {
+  const dispatch = useAppDispatch()
+  const fetchedContent = useAppSelector(selectFetchedContent)
+  const avocados = useAppSelector(selectAvocados)
+  const locale = useAppSelector(selectLocale)
 
-  return {
-    props: {
-      avocados: res.items,
-      revalidate: 1,
-    },
-  }
-}
+  useEffect(() => {
+    dispatch(setSelectedAvocado({}))
+    if (!fetchedContent) {
+      console.log('fetching content')
+      dispatch(getContentThunk())
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
-export default function Home({ avocados }) {
+  useEffect(() => {
+    dispatch(getContentThunk())
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [locale])
+
   return (
     <Layout>
       <AvocadoList avocados={avocados} />

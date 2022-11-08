@@ -1,18 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Link from 'next/link'
 import { Segment, Container, Grid, List, Header } from 'semantic-ui-react'
-import { clientContentful } from '../../utils/client'
+import { useAppSelector } from '../../store/hooks'
 
 export default function Footer() {
-  const [footer, setFooter] = useState({})
-
-  useEffect(() => {
-    const getFooter = async () => {
-      const res = await clientContentful.getEntries({ content_type: 'footer' })
-      setFooter(res.items[0].fields)
-    }
-    getFooter()
-  }, [])
+  const footer = useAppSelector((state) => state.content.footer)
 
   return (
     <Segment
